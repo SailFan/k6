@@ -1,0 +1,43 @@
+version: '3.9'
+
+services:
+  influxdb:
+    image: influxdb:2.7
+    container_name: influxdb
+    ports:
+      - "8086:8086"
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=admin
+      - DOCKER_INFLUXDB_INIT_PASSWORD=admin123
+      - DOCKER_INFLUXDB_INIT_ORG=myorg
+      - DOCKER_INFLUXDB_INIT_BUCKET=k6
+    volumes:
+      - influxdb_data:/var/lib/influxdb2
+
+  telegraf:
+    image: telegraf:1.36
+    container_name: telegraf
+    depends_on:
+      - influxdb
+    volumes:
+      - ./telegraf/telegraf.conf:/Users/liuwf/Desktop/vscode_workspace/k6_project/telegraf/telegraf.conf:ro
+    ports:
+      - "6565:6565"  # K6 输出指标端口
+
+  grafana:
+    image: grafana/grafana:10.1.2
+    container_name: grafana
+    depends_on:
+      - influxdb
+    ports:
+      - "3001:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin123
+    volumes:
+      - grafana_data:/var/lib/grafana
+
+volumes:
+  influxdb_data:
+  grafana_data:

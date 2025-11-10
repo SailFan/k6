@@ -1,0 +1,43 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Optional npm cache directory
+.npm
+
+# Logs
+logs/
+*.log
+*.log.*
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Runtime data
+tmp/
+temp/
+
+# Build output
+dist/
+build/
+
+# dotenv environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE/editor folders
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Docker files
+docker-compose.override.yml
