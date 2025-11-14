@@ -10,6 +10,7 @@
 // 小流量稳定运行测试
 // 基准测试
 
+
 import http from 'k6/http';
 import { sleep } from 'k6';
 
