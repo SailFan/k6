@@ -7,8 +7,8 @@ export const options = {
         contacts:{
             executor: 'shared-iterations',
             vus:10,
-            iterations:200,
-            maxDuration:'30s'
+            iterations:20000,
+            maxDuration:'100s'
         }
     }
 }
@@ -16,7 +16,6 @@ export const options = {
 export default function (){
     http.get('http://127.0.0.1:9527/api/data')
 }
-
 
 
 
@@ -30,4 +29,6 @@ export default function (){
 // 2、总请求数已知的场景
 // 3、脚本调试
 // 4、简单负载测试
+
+
 

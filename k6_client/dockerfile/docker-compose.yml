@@ -15,15 +15,15 @@ services:
     volumes:
       - influxdb_data:/var/lib/influxdb2
 
-  telegraf:
-    image: telegraf:1.36
-    container_name: telegraf
-    depends_on:
-      - influxdb
-    volumes:
-      - ./telegraf/telegraf.conf:/Users/liuwf/Desktop/vscode_workspace/k6_project/telegraf/telegraf.conf:ro
-    ports:
-      - "6565:6565"  # K6 输出指标端口
+  # telegraf:
+  #   image: telegraf:1.36
+  #   container_name: telegraf
+  #   depends_on:
+  #     - influxdb
+  #   volumes:
+  #     - ./telegraf/telegraf.conf:/Users/liuwf/Desktop/vscode_workspace/k6_project/telegraf/telegraf.conf:ro
+  #   ports:
+  #     - "6565:6565"  # K6 输出指标端口
 
   grafana:
     image: grafana/grafana:10.1.2
@@ -31,7 +31,7 @@ services:
     depends_on:
       - influxdb
     ports:
-      - "3001:3000"
+      - "3000:3000"
     environment:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=admin123
